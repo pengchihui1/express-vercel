@@ -29,7 +29,7 @@ app.all('/api/*' (req, res, next) => {
 	next() // 继续下一个中间件
 })
 
-// app.use(express.json({ extended: true }));
+app.use(express.json({ extended: false }));
 
 const categories = [
   'onion',
