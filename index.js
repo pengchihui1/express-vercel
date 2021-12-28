@@ -8,25 +8,26 @@ const path = require('path');
 const product = require("./api/product");
 
 const app = express();
+app.use(cors())
 
-const corsOptions = {
-  origin(origin, callback) {
-    callback(null, true);
-  },
-  credentials: true
-};
-app.use(cors(corsOptions));
 //设置跨域访问 https://www.bbsmax.com/A/nAJv3w3o5r/
-app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Credentials", "true")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-	res.header("X-Powered-By",' 3.2.1')
-    res.header("Content-Type", "application/json;charset=utf-8");
-    next();
+//app.all('*', function(req, res, next) {
+  //  res.header("Access-Control-Allow-Credentials", "true")
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+	//res.header("X-Powered-By",' 3.2.1')
+    //res.header("Content-Type", "application/json;charset=utf-8");
+   // next();
+//});
+
+app.use(function(req, res, next) {
+res.header("Access-Control-Allow-Origin", "*");
+res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, 
+Accept,Authorization");
+next();
 });
 
-app.use(cors())
 app.use(express.json({ extended: false }));
 
 const categories = [
