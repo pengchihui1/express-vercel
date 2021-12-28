@@ -20,15 +20,14 @@ app.use(cors())
    // next();
 //});
 
-app.use(function(req, res, next) {
-res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, 
-Accept,Authorization");
-next();
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Headers', 'accept, authorization, content-type, x-requested-with');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Origin', req.header('origin'));
+    next();
 });
 
-app.use(express.json({ extended: false }));
+// app.use(express.json({ extended: true }));
 
 const categories = [
   'onion',
