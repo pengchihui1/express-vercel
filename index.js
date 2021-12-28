@@ -8,7 +8,11 @@ const path = require('path');
 const product = require("./api/product");
 
 const app = express();
-app.use(cors({ origin: true }))
+
+const corsOptions = {
+  origin: "https://express-vercel-theta.vercel.app/"
+};
+app.use(cors(corsOptions));
 
 //设置跨域访问 https://www.bbsmax.com/A/nAJv3w3o5r/
 //app.all('*', function(req, res, next) {
@@ -19,13 +23,6 @@ app.use(cors({ origin: true }))
     //res.header("Content-Type", "application/json;charset=utf-8");
    // next();
 //});
-
-// app.use(function (req, res, next) {
-//     res.setHeader('Access-Control-Allow-Headers', 'accept, authorization, content-type, x-requested-with');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-//     res.setHeader('Access-Control-Allow-Origin', req.header('origin'));
-//     next();
-// });
 
 // app.use(express.json({ extended: true }));
 
