@@ -8,7 +8,7 @@ const path = require('path');
 const product = require("./api/product");
 
 const app = express();
-app.use(cors())
+app.use(cors({ origin: true }))
 
 //设置跨域访问 https://www.bbsmax.com/A/nAJv3w3o5r/
 //app.all('*', function(req, res, next) {
