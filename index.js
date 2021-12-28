@@ -9,20 +9,26 @@ const product = require("./api/product");
 
 const app = express();
 
-const corsOptions = {
-  origin: "https://express-vercel-theta.vercel.app/"
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "https://express-vercel-theta.vercel.app/"
+// };
+// app.use(cors(corsOptions));
 
-//设置跨域访问 https://www.bbsmax.com/A/nAJv3w3o5r/
-//app.all('*', function(req, res, next) {
-  //  res.header("Access-Control-Allow-Credentials", "true")
-    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-	//res.header("X-Powered-By",' 3.2.1')
-    //res.header("Content-Type", "application/json;charset=utf-8");
-   // next();
-//});
+//跨域CORS设置
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Headers", "Content-Type,Access-Token,adminid");
+    res.header("Access-Control-Expose-Headers", "*");
+    //如果需要使用put和delete需要对OPTION返回响应
+    if(req.method=='OPTIONS'){
+	console.log(123456789)
+        res.send('');
+        return;
+    }
+    next();
+});
 
 // app.use(express.json({ extended: true }));
 
